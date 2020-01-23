@@ -64,9 +64,14 @@
                   </ul>
                 </li>
                 
-                <li><a href="shop.html">Shop</a></li>
                 <li><a href="upload_item">Upload</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="accounts/logout">LogOut</a></li>
+                <li>Hellow {{user.first_name}}</li>
+                {% else %}
+                <li><a href="accounts/register">Register</a></li>
+                <li><a href="accounts/login">Login</a></li>
+                {% endif %}
               </ul>
             </nav>
           </div>
@@ -115,7 +120,7 @@
               <div class="item">
                 <div class="item-entry">
                   <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="value="{{items.price}}"" alt="Image" class="img-fluid">
+                    <img src="{{item.image.url}} alt="Image" class="img-fluid">
                   </a>
                   <h2 class="item-title"><a href="#">{{item.category}}</a></h2>
                   <div class="star-rating">
