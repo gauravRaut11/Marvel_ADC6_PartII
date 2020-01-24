@@ -144,8 +144,14 @@
                   <h2 class="item-title"><a href="#">{{item.category}}</a></h2>
                   <div class="star-rating">
                     <h2 class="item-title"><a href="#">{{item.product_name}}</a></h2>
-                  <strong class="item-price">${{item.price}}</strong>
-                  <button>Add to cart</button><br>
+                  <strong class="item-price">${{item.price}}</strong><br>
+                  {% if object in user.profile.e_items.all %}
+                  You own This
+                  {% elif object in current_order_products %}
+                  <a href ="shopping_cart/cart_item">Go to cart</a>
+                  {% else %}
+                  <a href="add_to_cart"><button>Add to cart</button></a><br>
+                  {% endif %}
                   <a href="/delete/{{item.pk}}">Delete</a><br>
                   <a href="/update_form/{{item.pk}}" role="button">Update</a>
                   </div>
