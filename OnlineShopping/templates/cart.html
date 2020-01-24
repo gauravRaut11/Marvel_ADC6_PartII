@@ -109,14 +109,15 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for pd in Order.get_cart_items %}
                   <tr>
                     <td class="product-thumbnail">
-                      <img src="{% static 'images/cloth_1.jpg' %}" alt="Image" class="img-fluid">
+                      <img src="{{pd.products.image.url}}" alt="Image" class="img-fluid">
                     </td>
                     <td class="product-name">
-                      <h2 class="h5 text-black">Top Up T-Shirt</h2>
+                      <h2 class="h5 text-black">{{pd.products.product_name}}</h2>
                     </td>
-                    <td>$49.00</td>
+                    <td>{{pd.products.price}}</td>
                     <td>
                       <div class="input-group mb-3" style="max-width: 120px;">
                         <div class="input-group-prepend">
@@ -129,10 +130,10 @@
                       </div>
 
                     </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                    <td>{{pd.products.price}}</td>
+                    <td><a href="delete/{{pd.id}}" class="btn btn-primary height-auto btn-sm">X</a></td>
                   </tr>
-
+                  {% endfor %}
                   <tr>
                     <td class="product-thumbnail">
                       <img src="{% static 'images/cloth_2.jpg' %}" alt="Image" class="img-fluid">

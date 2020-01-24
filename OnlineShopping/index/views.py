@@ -1,24 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Item
-from shopping_cart.models import Order
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     items=Item.objects.all()
-    filtered_orders=Order.objects.filter(owner=request.user.profile,is_ordered=False)
-    current_order_products = []
-    if filtered_orders.exists():
-    	user_order = filtered_orders[0]
-    	user_order_items = user_order.items.all()
-    	current_order_products = [product.Item for product in user_order_items]
+    return render(request,'home.html',{'items':items})
 
-    context = {
-        'items':items,
-        'current_order_products': current_order_products
-    }
-    return render(request,'home.html',context)
-
+@login_required
 def upload_item(request):
     return render(request,'upload.html')
     
@@ -62,8 +52,3 @@ def update(request, pk):
 
     else:
         return HttpResponse("record not updated")
-
-
-
-
-
