@@ -2,11 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Item
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     items=Item.objects.all()
     return render(request,'home.html',{'items':items})
 
+@login_required
 def upload_item(request):
     return render(request,'upload.html')
     
@@ -50,8 +52,3 @@ def update(request, pk):
 
     else:
         return HttpResponse("record not updated")
-
-
-
-
-
