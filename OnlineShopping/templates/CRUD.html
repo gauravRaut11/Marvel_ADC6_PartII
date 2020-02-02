@@ -41,14 +41,14 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="home.html" class="js-logo-clone">OnlineShopping</a>
+              <a href="/" class="js-logo-clone">OnlineShopping</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li class="has-children active">
-                  <a href="home.html">Home</a>
+                  <a href="/">Home</a>
                   <ul class="dropdown">
                     <li><a href="#">Menu One</a></li>
                     <li><a href="#">Menu Two</a></li>
@@ -64,44 +64,11 @@
                   </ul>
                 </li>
                 
-                <li><a href="{% url 'admin_view' %}">Inventory</a></li>
-                {% if user.is_authenticated %}
-                <li><a href="accounts/logout">LogOut</a></li>
-                <li>Hellow {{user.first_name}}</li>
-                {% else %}
-                <li><a href="accounts/register">Register</a></li>
-                <li><a href="accounts/login">Login</a></li>
-                {% endif %}
+                <li><a href="upload_item">Upload</a></li>
               </ul>
             </nav>
           </div>
-          <div class="icons">
-            <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="#" class="icons-btn d-inline-block"><span class="icon-heart-o"></span></a>
-            {% if user.is_authenticated %}
-            <a href="cart/show_cart/" class="icons-btn d-inline-block bag">
-              <span class="icon-shopping-bag"></span>
-            </a>
-            {% endif %}
-            <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span class="icon-menu"></span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-blocks-cover" data-aos="fade">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ml-auto order-md-2 align-self-start">
-            <div class="site-block-cover-content">
-            <h2 class="sub-title">#New Summer Collection 2019</h2>
-            <h1>Arrivals Sales</h1>
-            <p><a href="#" class="btn btn-black rounded-0">Shop Now</a></p>
-            </div>
-          </div>
-          <div class="col-md-6 order-1 align-self-end">
-            <img src="{% static 'images/model_3.png' %}" alt="Image" class="img-fluid">
-          </div>
+         
         </div>
       </div>
     </div>
@@ -116,26 +83,6 @@
         
           <div class="col-md-12 block-3">
             <div class="nonloop-block-3 owl-carousel">
-              {%if source%}
-              {% for item in source %}
-              <div class="item">
-                <div class="item-entry">
-                  <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="{{item.image.url}}" alt="Image" class="img-fluid">
-                  </a>
-                  <h2 class="item-title"><a href="#">{{item.category}}</a></h2>
-                  <div class="star-rating">
-                    <h2 class="item-title"><a href="#">{{item.product_name}}</a></h2>
-                  <strong class="item-price">${{item.price}}</strong><br>
-                  {% if user.is_authenticated  %}
-                 <button><a href="/cart/{{item.pk}}">Add to cart</a></button> <br>
-                  {% endif %}
-                  </div>
-                </div>
-              </div>
-             {% endfor %}
-
-              {%else%}
               {% for item in items %}
               <div class="item">
                 <div class="item-entry">
@@ -146,78 +93,14 @@
                   <div class="star-rating">
                     <h2 class="item-title"><a href="#">{{item.product_name}}</a></h2>
                   <strong class="item-price">${{item.price}}</strong><br>
-                  {% if user.is_authenticated  %}
-                  <button><a href="cart/cart/{{item.pk}}">Add to cart</a></button><br>
-                  {% endif %}
+                  <a href="/inventory/delete/{{item.pk}}"><button>Delete</button></a><br>
+                  <a href="/inventory/update_form/{{item.pk}}"><button>Update</button></a>
                   </div>
                 </div>
               </div>
              {% endfor %}
-              {% endif%}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="site-blocks-cover inner-page py-5" data-aos="fade">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ml-auto order-md-2 align-self-start">
-            <div class="site-block-cover-content">
-            <h2 class="sub-title">#New Summer Collection 2019</h2>
-            <h1>New Shoes</h1>
-            <p><a href="#" class="btn btn-black rounded-0">Shop Now</a></p>
-            </div>
-          </div>
-          <div class="col-md-6 order-1 align-self-end">
-            <img src="{% static 'images/model_6.png' %}" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
-
     <footer class="site-footer custom-border-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Promo</h3>
-            <a href="#" class="block-6">
-              <img src="{% static 'images/about_1.jpg' %}" alt="Image placeholder" class="img-fluid rounded mb-4">
-              <h3 class="font-weight-light  mb-0">Finding Your Perfect Shirts This Summer</h3>
-              <p>Promo from  July 15 &mdash; 25, 2019</p>
-            </a>
-          </div>
-          <div class="col-lg-5 ml-auto mb-5 mb-lg-0">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Quick Links</h3>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Sell online</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Shopping cart</a></li>
-                  <li><a href="#">Store builder</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Mobile commerce</a></li>
-                  <li><a href="#">Dropshipping</a></li>
-                  <li><a href="#">Website development</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Point of sale</a></li>
-                  <li><a href="#">Hardware</a></li>
-                  <li><a href="#">Software</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-3">
+               <div class="col-md-6 col-lg-3">
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Contact Info</h3>
               <ul class="list-unstyled">

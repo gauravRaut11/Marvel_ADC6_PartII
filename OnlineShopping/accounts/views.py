@@ -30,7 +30,7 @@ def register(request):
             messages.info(request,'password not matching')
             return redirect('register')
 
-        return redirect('/')
+        return redirect('login')
 
     else:
         return render(request,'register.html')
