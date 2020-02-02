@@ -5,10 +5,13 @@ from django.conf.urls.static import static
 from . import views
 urlpatterns = [
     path('', views.home),
-    path('upload_item', views.upload_item),
-    path('upload', views.upload),
-    path('delete/<int:pk>', views.delete),
-    path('update_form/<int:pk>', views.update_form),
-    path('update_form/update/<int:pk>', views.update),
-    path('search/',views.search)
+    path('inventory/upload_item', views.upload_item),
+    path('inventory/upload', views.upload),
+    path('inventory/delete/<int:pk>', views.delete),
+    path('inventory/update_form/<int:pk>', views.update_form),
+    path('inventory/update_form/update/<int:pk>', views.update),
+    path('search/',views.search),
+    path("inventory/",views.admin_view,name='admin_view'),
+    path("inventory/restricted/",views.admin_only,name='admin_only')
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
