@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from .views import *
+from . import views
 
 urlpatterns = [
-    path('cart/<int:pk>/', add_to_cart, name='cart'),
-    path('show_cart/',cart_details, name = 'carts'),
-    path('show_cart/delete/<int:pk>/', delete_from_cart, name='delete_item'),
+    path('cart/<int:id>/', views.add_item_to_cart, name='cart'),
+    path('show_cart/',views.cart_detail_view, name = 'carts'),
+    path('show_cart/delete/<int:id>/',views.delete_item_from_cart, name='delete_item'),
 ]
