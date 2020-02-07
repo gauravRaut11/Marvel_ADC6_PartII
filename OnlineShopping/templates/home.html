@@ -120,7 +120,7 @@
               {% for item in source %}
               <div class="item">
                 <div class="item-entry">
-                  <a href="#" class="product-item md-height bg-gray d-block">
+                  <a href="download/{{item.pk}}" class="product-item md-height bg-gray d-block">Click on image to download
                     <img src="{{item.image.url}}" alt="Image" class="img-fluid">
                   </a>
                   <h2 class="item-title"><a href="#">{{item.category}}</a></h2>
@@ -139,7 +139,7 @@
               {% for item in items %}
               <div class="item">
                 <div class="item-entry">
-                  <a href="#" class="product-item md-height bg-gray d-block">
+                  <a href="download/{{item.pk}}" class="product-item md-height bg-gray d-block">click on image to download
                     <img src="{{item.image.url}}" alt="Image" class="img-fluid">
                   </a>
                   <h2 class="item-title"><a href="#">{{item.category}}</a></h2>

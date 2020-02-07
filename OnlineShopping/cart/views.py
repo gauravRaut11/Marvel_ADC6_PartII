@@ -60,4 +60,5 @@ def delete_item_from_cart(request, id):
         return redirect("carts")
 
 
-
+def checkout(request):
+    return render(request,'thankyou.html')
