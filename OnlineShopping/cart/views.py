@@ -25,6 +25,7 @@ def add_item_to_cart(request, id):
         order = order_qs[0]
         # check if the order item is in the order
         if order.items.filter(item__id=item.id).exists():
+            order_item.quantity += 1
             order_item.save()
             return redirect("carts")
         else:
