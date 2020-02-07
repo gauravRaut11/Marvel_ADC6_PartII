@@ -21,6 +21,7 @@ class Order(models.Model):
     items = models.ManyToManyField(Cart)
     def __str__(self):
         return self.user.username
+   
     def get_total(self):
         total = 0
         for order_item in self.items.all():

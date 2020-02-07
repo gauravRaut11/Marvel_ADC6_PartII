@@ -1,10 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Item
 from django.db.models import Q
 from django.contrib.auth.decorators import permission_required
-from django.core.paginator import Paginator
 from django.contrib.auth.models import User, Permission
+from wsgiref.util import FileWrapper
+import mimetypes, os, re
 
 def home(request):
     items=Item.objects.all()
@@ -34,7 +35,7 @@ def upload(request):
 def search(request):
     if request.method == "GET":
         src=request.GET['search']
-        match=Item.objects.filter(Q(product_name__startswith=src)) 
+        match=Item.objects.filter(Q(product_name__startswith=src)|Q(category__startswith=src)) 
         if match:
             return render(request,'home.html',{'source':match})
         else:
@@ -63,3 +64,11 @@ def update(request, pk):
         return HttpResponse("record not updated")
 
 
+def download_image(request, pk):
+    img = Item.objects.get(pk=pk)
+    wrapper = FileWrapper(img.image) 
+    content_type = mimetypes.guess_type(str(img.image))[0]
+    response = HttpResponse(wrapper, content_type=content_type)
+    response['Content-Length'] = os.path.getsize(str(img.image))
+    response['Content-Disposition'] = "attachment; filename=%s" % img.image
+    return response
