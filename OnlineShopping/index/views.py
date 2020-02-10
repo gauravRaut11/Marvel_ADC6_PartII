@@ -44,7 +44,7 @@ def download_image(request, pk):
 def search(request):
     if request.method == "GET":
         src=request.GET['search']
-        match=Item.objects.filter(Q(product_name__startswith=src)|Q(category__startswith=src)) 
+        match=Item.objects.filter(Q(product_name__startswith=src)|Q(category__startswith=src)|Q(id__startswith=src)) 
         if match:
             return render(request,'home.html',{'source':match})
         else:
