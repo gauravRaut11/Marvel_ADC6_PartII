@@ -16,6 +16,7 @@ class Cart(models.Model):
     def __str__(self):
         return self.item.product_name
 
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     items = models.ManyToManyField(Cart)

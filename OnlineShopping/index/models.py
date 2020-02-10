@@ -1,5 +1,5 @@
 from django.db import models
-
+import random
 class Item(models.Model):
     product_name=models.CharField(max_length=100)
     category=models.CharField(max_length=100)
@@ -14,4 +14,5 @@ class Item(models.Model):
 
     def test_product_category(self):
         return (self.category == "fashion") or (self.category == "grocessory") or (self.category == "electronics")
-        
+    
+    
