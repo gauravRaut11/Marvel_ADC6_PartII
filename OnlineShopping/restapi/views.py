@@ -45,7 +45,7 @@ def get_update_delete(request,Id):
             "category":item.category
         })
     elif request.method=="DELETE":
-        item = Item.objects.get(id = id)
+        item = Item.objects.get(id = Id)
         item.delete()
         return JsonResponse({
             "message":"Successfully deleated!!"
