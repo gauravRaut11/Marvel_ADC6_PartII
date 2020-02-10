@@ -59,3 +59,14 @@ def get_update_delete(request,Id):
         item.save()
         return JsonResponse({
             "message":"Successfully Updated!!"})
+
+    
+@csrf_exempt 
+def pagination(request,PAGENO,SIZE):
+    skip=SIZE*(PAGENO -1)
+    item=Item.objects.values() [skip:(PAGENO*SIZE)]
+    
+    dict={
+        "item":list(item.values("product_name","category","price"))
+        }
+    return JsonResponse(dict)

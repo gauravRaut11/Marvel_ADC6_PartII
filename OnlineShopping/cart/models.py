@@ -5,13 +5,16 @@ from django.contrib.auth.models import User
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
+    quantity=models.IntegerField(default=1)
    
+    def __str__(self):
+        return f"{self.quantity} of {self.item.title}"
     
     def get_cart_items(self):
         return self.item.all()
 
     def get_final_price(self):
-        return self.item.price
+        return self.quantity *self.item.price
 
     def __str__(self):
         return self.item.product_name

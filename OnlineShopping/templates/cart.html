@@ -92,6 +92,8 @@
                     <th class="product-thumbnail">Image</th>
                     <th class="product-name">Product Name</th>
                     <th class="product-name">Product Category</th>
+                    <th class="product-quantity">Product Quantity</th>
+
                     <th class="product-price">Price</th>
                     <th class="product-remove">Remove</th>
                   </tr>
@@ -107,6 +109,9 @@
                     </td>
                     <td class="product-name">
                       <h2 class="h5 text-black">{{pd.item.category}}</h2>
+                    </td>
+                    <td class="product-quantity">
+                      <h2 class="h5 text-black">{{pd.quantity}}</h2>
                     </td>
                     <td>{{pd.item.price}}</td>
                     <td><a href="delete/{{pd.item.id}}" class="btn btn-primary height-auto btn-sm">X</a></td>
