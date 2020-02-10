@@ -14,4 +14,4 @@ class Item(models.Model):
 
     def test_product_category(self):
         return (self.category == "fashion") or (self.category == "grocessory") or (self.category == "electronics")
-        
+       
